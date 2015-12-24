@@ -1,14 +1,42 @@
 <!DOCTYPE html>
-<html>
-<head>
-  <title>Stephsfronds</title>
-  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
-  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
-  <%= csrf_meta_tags %>
-</head>
-<body>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-<%= yield %>
+    <title><%= content_for?(:title) ? yield(:title) : "foundation-rails" %></title>
 
-</body>
+    <%= stylesheet_link_tag    "application" %>
+    <%= javascript_include_tag "vendor/modernizr" %>
+    <%= javascript_include_tag "application", 'data-turbolinks-track' => true %>
+    <%= csrf_meta_tags %>
+  </head>
+
+  <body>
+
+    <%= render "layouts/header" %>
+
+    <%= render "layouts/alerts" %>
+
+    <div id="main-content" class="row full-min-height">
+      <%= yield %>
+    </div>
+
+    <footer class="row">
+      <div class="large-12 columns">
+        <hr> <p>© StephsFronds 2016</p>
+        <div id="user_nav">
+          <% if user_signed_in? %>
+            Signed in as <%= current_user.email %>. Not you?
+            <%= link_to "Sign out", destroy_user_session_path, method: :delete %>
+          <% else %>
+            <%= link_to "Sign in", new_user_session_path %>
+          <% end %>
+        </div>
+      </div>
+    </footer>
+
+    <%= javascript_include_tag "application" %>
+
+  </body>
 </html>
