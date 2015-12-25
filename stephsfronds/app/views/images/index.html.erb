@@ -12,6 +12,7 @@
   <tbody>
     <% @images.each do |image| %>
       <tr>
+        <td><%= link_to( image_tag( root_url + "/images/" + image.filename, size: "250x250", alt: image.filename, class: "th"), image) %><br>
         <td><%= link_to 'Show', image %></td>
         <td><%= link_to 'Edit', edit_image_path(image) %></td>
         <td><%= link_to 'Destroy', image, method: :delete, data: { confirm: 'Are you sure?' } %></td>

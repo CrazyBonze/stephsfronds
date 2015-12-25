@@ -1,3 +1,15 @@
 // Place all the styles related to the home controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.translucent_bg {
+  background: rgb(222, 222, 222);
+  background: rgba(222, 222, 222, 0.6);
+  height: 100%;
+  width: 100%;
+}
+
+.forground {
+  width: 100%;
+  height: 100%;
+}

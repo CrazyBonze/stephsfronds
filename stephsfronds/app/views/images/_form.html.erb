@@ -12,6 +12,17 @@
   <% end %>
 
   <div class="actions">
+    <% if current_page?(:controller => 'images', :action => 'new') %>
+      <%= f.file_field :uploaded_file, required: :true %>
+    <% end %>
+    <%= f.label :name, "Image name?" %><br>
+    <%= f.text_field :name %><br>
+    <%= f.label :showcase, "Display on Homepage?" %><br>
+    <%= f.radio_button :showcase, "true" %>Show<br>
+    <%= f.radio_button :showcase, "false" %>Don't Show<br>
+    <%= f.label :image_type, "What type of picture?" %><br>
+    <%= f.select :image_type, Image.image_types.keys.to_a %>
+
     <%= f.submit %>
   </div>
 <% end %>

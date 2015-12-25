@@ -10,7 +10,12 @@
 
     <section class="top-bar-section">
       <ul class="right">
-        <li><%=link_to "Contact", "#" %></li>
+        <% if user_signed_in? %>
+          <li><%= link_to "Manage Images", images_path %></li>
+          <li><%= link_to "Add Image", new_image_path %></li>
+        <% else %>
+          <li><%=link_to "Contact", "#" %></li>
+        <% end %>
       </ul>
 
       <ul class="left">

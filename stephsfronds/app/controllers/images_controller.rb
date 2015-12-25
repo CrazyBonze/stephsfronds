@@ -25,6 +25,13 @@ class ImagesController < ApplicationController
   # POST /images.json
   def create
     @image = Image.new(image_params)
+    @image.generate_filename
+
+    @uploaded_io = params[:image][:uploaded_file]
+
+    File.open(Rails.root.join('public', 'images', @image.filename), 'wb') do |file|
+      file.write(@uploaded_io.read)
+    end
 
     respond_to do |format|
       if @image.save
@@ -62,13 +69,13 @@ class ImagesController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_image
-      @image = Image.find(params[:id])
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_image
+    @image = Image.find(params[:id])
+  end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def image_params
-      params[:image]
-    end
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def image_params
+    params.require(:image).permit(:name, :showcase, :type)
+  end
 end

@@ -8,6 +8,7 @@
 
     <%= stylesheet_link_tag    "application" %>
     <%= javascript_include_tag "vendor/modernizr" %>
+    <%= javascript_include_tag "application" %>
     <%# javascript_include_tag "application", 'data-turbolinks-track' => true %>
     <%= csrf_meta_tags %>
   </head>
@@ -18,8 +19,15 @@
 
     <%= render "layouts/alerts" %>
 
-    <div id="main-content" class="row full-min-height">
-      <%= yield %>
+    <div id="main-content" class="row full-min-height translucent_bg">
+      <div class="row">
+        <div class="small-12 columns">
+          <div class="forground">
+            if this has opacity i dont know what to do.
+            <%= yield %>
+          </div>
+        </div>
+      </div>
     </div>
 
     <div id="footer">
@@ -37,7 +45,6 @@
     </footer>
     </div>
 
-    <%= javascript_include_tag "application" %>
 
   </body>
 </html>
